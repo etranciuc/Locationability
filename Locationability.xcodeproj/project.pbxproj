@@ -60,13 +60,13 @@
 			name = "Application Delegate";
 			sourceTree = "<group>";
 		};
-		225364E215B6972A00C4F51B /* View Controllers */ = {
+		225364E215B6972A00C4F51B /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				22B60B1415B5C9D20089A6E1 /* LocationViewController.h */,
 				22B60B1515B5C9D20089A6E1 /* LocationViewController.m */,
 			);
-			name = "View Controllers";
+			name = Controllers;
 			sourceTree = "<group>";
 		};
 		225364E715B6981600C4F51B /* Location Manager */ = {
@@ -109,10 +109,10 @@
 		22B60AE915B58A700089A6E1 /* Locationability */ = {
 			isa = PBXGroup;
 			children = (
-				225364E715B6981600C4F51B /* Location Manager */,
 				225364E015B6971600C4F51B /* Application Delegate */,
+				225364E215B6972A00C4F51B /* Controllers */,
+				225364E715B6981600C4F51B /* Location Manager */,
 				22B60AEA15B58A700089A6E1 /* Supporting Files */,
-				225364E215B6972A00C4F51B /* View Controllers */,
 			);
 			path = Locationability;
 			sourceTree = "<group>";

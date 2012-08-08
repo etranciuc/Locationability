@@ -38,10 +38,10 @@
     
     self.navigationItem.title = @"Coordinates";
     
-    _locationManager = [[CBLocationManager instance] retain];
+    _locationManager = [CBLocationManager instance];
     _locationManager.delegate = self;
     
-    _coordinates = [[NSMutableArray array] retain];
+    _coordinates = [[NSMutableArray alloc] init];
     
     _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 
                                                                0.0, 

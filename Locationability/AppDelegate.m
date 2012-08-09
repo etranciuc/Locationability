@@ -29,20 +29,21 @@
 
 @synthesize window = _window;
 
-- (void)dealloc
-{
+- (void)dealloc {
+    [_locationViewController release];
+    [_navigationController release];
     [_window release];
     [super dealloc];
 }
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
-    _locationViewController = [[LocationViewController new] autorelease];
+    _locationViewController = [[LocationViewController alloc] init];
     _navigationController = [[UINavigationController alloc] initWithRootViewController:_locationViewController];
     
     self.window = [[[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]] autorelease];
-    // Override point for customization after application launch.
     self.window.backgroundColor = [UIColor clearColor];
     self.window.rootViewController = _navigationController;
+    
     [self.window makeKeyAndVisible];
     
     return YES;

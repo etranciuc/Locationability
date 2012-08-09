@@ -30,8 +30,8 @@
 @synthesize window = _window;
 
 - (void)dealloc {
-    [_locationViewController release];
     [_navigationController release];
+    [_locationViewController release];
     [_window release];
     [super dealloc];
 }

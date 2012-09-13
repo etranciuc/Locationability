@@ -26,13 +26,10 @@
 #import <UIKit/UIKit.h>
 #import "CBLocationManager.h"
 
-@interface LocationViewController : UIViewController<CBLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource> {
+@interface LocationViewController : UIViewController<CBLocationManagerDelegate, UITableViewDelegate, UITableViewDataSource>
 
-@private
-    CBLocationManager *_locationManager;
-    UITableView *_tableView;
-    NSMutableArray *_coordinates;
-    
-}
+@property (strong, nonatomic) CBLocationManager *locationManager;
+@property (strong, nonatomic) UITableView *tableView;
+@property (strong, nonatomic) NSMutableArray *coordinates;
 
 @end

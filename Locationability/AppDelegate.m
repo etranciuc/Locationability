@@ -28,11 +28,14 @@
 @implementation AppDelegate
 
 @synthesize window = _window;
+@synthesize navigationController = _navigationController;
+@synthesize locationViewController = _locationViewController;
 
 - (void)dealloc {
     [_navigationController release];
     [_locationViewController release];
     [_window release];
+    
     [super dealloc];
 }
 

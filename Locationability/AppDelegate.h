@@ -26,14 +26,10 @@
 #import <UIKit/UIKit.h>
 #import "LocationViewController.h"
 
-@interface AppDelegate : UIResponder <UIApplicationDelegate> {
-
-@private
-    UINavigationController *_navigationController;
-    LocationViewController *_locationViewController;
-
-}
+@interface AppDelegate : UIResponder <UIApplicationDelegate>
 
 @property (strong, nonatomic) UIWindow *window;
+@property (strong, nonatomic) UINavigationController *navigationController;
+@property (strong, nonatomic) LocationViewController *locationViewController;
 
 @end

@@ -11,10 +11,10 @@
 //  to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
 //  copies of the Software, and to permit persons to whom the Software is
 //  furnished to do so, subject to the following conditions:
-//  
+//
 //  The above copyright notice and this permission notice shall be included in
 //  all copies or substantial portions of the Software.
-//  
+//
 //  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
 //  IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
 //  FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
@@ -31,22 +31,19 @@
 
 @implementation LocationViewController
 
+@synthesize locationManager = _locationManager;
+@synthesize tableView = _tableView;
+@synthesize coordinates = _coordinates;
+
 #pragma mark - View lifecycle
 
 - (void)loadView {
     [super loadView];
     
-    self.navigationItem.title = @"Coordinates";
-    
-    _locationManager = [CBLocationManager instance];
-    _locationManager.delegate = self;
-    
-    _coordinates = [[NSMutableArray alloc] init];
-    
-    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0, 
-                                                               0.0, 
-                                                               self.view.frame.size.width, 
-                                                               self.view.bounds.size.height-44) 
+    _tableView = [[UITableView alloc] initWithFrame:CGRectMake(0.0,
+                                                               0.0,
+                                                               self.view.frame.size.width,
+                                                               self.view.bounds.size.height-44)
                                               style:UITableViewStylePlain];
     _tableView.delegate = self;
     _tableView.dataSource = self;
@@ -56,6 +53,13 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
+    
+    self.navigationItem.title = @"Coordinates";
+    
+    _locationManager = [[CBLocationManager instance] retain];
+    _locationManager.delegate = self;
+    
+    _coordinates = [[NSMutableArray alloc] init];
 }
 
 - (void)viewDidUnload {
@@ -93,7 +97,7 @@
     
     UITableViewCell *cell = (UITableViewCell *)[tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (cell == nil) {
-        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault 
+        cell = [[[UITableViewCell alloc] initWithStyle:UITableViewCellStyleDefault
                                        reuseIdentifier:cellIdentifier] autorelease];
     }
     
@@ -125,8 +129,8 @@
     [_locationManager stop];
     
     UIAlertView *alert = [[UIAlertView alloc] initWithTitle:NSLocalizedString(@"Error", nil)
-                                                    message:[error localizedDescription] 
-                                                   delegate:nil 
+                                                    message:[error localizedDescription]
+                                                   delegate:nil
                                           cancelButtonTitle:NSLocalizedString(@"OK", nil)
                                           otherButtonTitles:nil];
     [alert show];

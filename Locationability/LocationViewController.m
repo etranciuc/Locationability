@@ -61,7 +61,7 @@
     _tableView.delegate = self;
     _tableView.dataSource = self;
     
-    [self.view addSubview:_tableView];
+    self.view = _tableView;
 }
 
 - (void)viewDidLoad {

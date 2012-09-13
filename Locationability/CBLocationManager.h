@@ -34,17 +34,13 @@
 
 @end
 
-@interface CBLocationManager : NSObject<CLLocationManagerDelegate> {
+@interface CBLocationManager : NSObject<CLLocationManagerDelegate>
 
-@private
-    CLLocationManager *_locationManager;
-    NSDate *_locationStartDate;
+@property (assign, nonatomic) id<CBLocationManagerDelegate> delegate;
+@property (strong, nonatomic) CLLocationManager *locationManager;
+@property (strong, nonatomic) NSDate *locationStartDate;
 
-}
-
-@property (nonatomic, assign) id<CBLocationManagerDelegate> delegate; 
-
-+ (CBLocationManager *)instance;
++ (CBLocationManager *)sharedInstance;
 - (void)start;
 - (void)stop;
 

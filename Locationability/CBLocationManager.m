@@ -33,23 +33,19 @@
 
 @implementation CBLocationManager
 
-@synthesize delegate;
+@synthesize delegate = _delegate;
+@synthesize locationManager = _locationManager;
+@synthesize locationStartDate = _locationStartDate;
 
 #pragma mark - Shared instance (Singleton)
 
-+ (CBLocationManager *)instance {
-    static CBLocationManager *_default = nil;
-    
-    if (_default != nil) {
-        return _default;
-    }
-    
-    static dispatch_once_t safer;
-    dispatch_once(&safer, ^(void) {
-        _default = [[CBLocationManager alloc] init];
++ (CBLocationManager *)sharedInstance {
+    static CBLocationManager *_sharedInstance = nil;
+    static dispatch_once_t onceToken;
+    dispatch_once(&onceToken, ^{
+        _sharedInstance = [[CBLocationManager alloc] init];
     });
-    
-    return _default;
+    return _sharedInstance;
 }
 
 #pragma mark - Initialization
@@ -76,6 +72,7 @@
 #pragma mark - Memory management
 
 - (void)dealloc {
+    [_locationStartDate release];
     _locationManager.delegate = nil;
     [_locationManager release];
     
@@ -125,14 +122,14 @@
         return;
     }
     
-    if ([delegate respondsToSelector:@selector(didUpdateLocation:)]) {
-        [delegate didUpdateLocation:newLocation];
+    if ([_delegate respondsToSelector:@selector(didUpdateLocation:)]) {
+        [_delegate didUpdateLocation:newLocation];
     }
 }
 
 - (void)locationManager:(CLLocationManager *)manager didFailWithError:(NSError *)error {
-    if ([delegate respondsToSelector:@selector(didFailWithError:)]) {
-        [delegate didFailWithError:error];
+    if ([_delegate respondsToSelector:@selector(didFailWithError:)]) {
+        [_delegate didFailWithError:error];
     }
 }
 

@@ -35,6 +35,19 @@
 @synthesize tableView = _tableView;
 @synthesize coordinates = _coordinates;
 
+#pragma mark - Memory management
+
+- (void)dealloc {
+    [_locationManager stop];
+    _locationManager.delegate = nil;
+    [_locationManager release];
+    
+    [_coordinates release];
+    [_tableView release];
+    
+    [super dealloc];
+}
+
 #pragma mark - View lifecycle
 
 - (void)loadView {
@@ -56,7 +69,7 @@
     
     self.navigationItem.title = @"Coordinates";
     
-    _locationManager = [[CBLocationManager instance] retain];
+    _locationManager = [[CBLocationManager sharedInstance] retain];
     _locationManager.delegate = self;
     
     _coordinates = [[NSMutableArray alloc] init];
@@ -68,18 +81,6 @@
 
 - (BOOL)shouldAutorotateToInterfaceOrientation:(UIInterfaceOrientation)interfaceOrientation {
     return (interfaceOrientation == UIInterfaceOrientationPortrait);
-}
-
-#pragma mark - Memory management
-
-- (void)dealloc {
-    [_locationManager stop];
-    _locationManager.delegate = nil;
-    [_locationManager release];
-    [_coordinates release];
-    [_tableView release];
-    
-    [super dealloc];
 }
 
 #pragma mark - Table view data source
